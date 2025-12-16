@@ -28,6 +28,7 @@ const Intro: React.FC = () => {
                 display: 'flex',
                 alignItems: 'center',
                 overflow: 'hidden',
+                mt:{xs:4,md:2}
             }}
         >
             <Container maxWidth="xl">
@@ -37,22 +38,56 @@ const Intro: React.FC = () => {
                         gridTemplateColumns: { xs: '1fr', md: '1.2fr 0.8fr' },
                         gap: { xs: 6, md: 10 },
                         alignItems: 'center',
+                        pt: { xs: 8 }
                     }}
                 >
                     {/* TEXT */}
-                    <Box>
-                        <motion.div variants={reveal} initial="hidden" animate="visible">
-                            <Typography
-                                sx={{
-                                    fontSize: { xs: '3rem', sm: '4rem', md: '6rem', xl: '7rem' },
-                                    fontWeight: 900,
-                                    lineHeight: 0.95,
-                                    letterSpacing: '-0.04em',
-                                }}
-                            >
-                                {hero?.name}
-                            </Typography>
-                        </motion.div>
+                    <Box sx={{display:{xs:'flex',md:'block'},flexDirection:'column',alignItems:'center'}}>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: { xs: "center", md: "flex-start" },
+                            }}
+                        >
+                            <motion.div variants={reveal} initial="hidden" animate="visible">
+                                <Typography
+                                    sx={{
+                                        fontSize: {
+                                            xs: "2.4rem",
+                                            sm: "3.2rem",
+                                            md: "5rem",
+                                            xl: "6rem",
+                                        },
+                                        fontWeight: 900,
+                                        lineHeight: 0.95,
+                                        letterSpacing: "-0.04em",
+                                    }}
+                                >
+                                    {hero?.firstName}
+                                </Typography>
+                            </motion.div>
+
+                            <motion.div variants={reveal} initial="hidden" animate="visible">
+                                <Typography
+                                    sx={{
+                                        fontSize: {
+                                            xs: "2.1rem",
+                                            sm: "2.8rem",
+                                            md: "4.5rem",
+                                            xl: "5.5rem",
+                                        },
+                                        fontWeight: 300,
+                                        lineHeight: 0.95,
+                                        letterSpacing: "-0.04em",
+                                        mt: { xs: 0.5, md: -0.5 },
+                                        ml: { xs: 0, md: "0.25ch" },
+                                    }}
+                                >
+                                    {hero?.lastName}
+                                </Typography>
+                            </motion.div>
+                        </Box>
 
                         <motion.div variants={reveal} initial="hidden" animate="visible">
                             <Typography
@@ -75,6 +110,7 @@ const Intro: React.FC = () => {
                                     lineHeight: 1.8,
                                     maxWidth: '520px',
                                     color: '#D1D1D1',
+                                    textAlign:{xs:'center',md:'justify'}
                                 }}
                             >
                                 {hero?.biography}

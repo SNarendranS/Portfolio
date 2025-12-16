@@ -18,7 +18,7 @@ const MobileDrawer = ({ items, open, setOpen }: Props) => {
                 sx: {
                     width: "100%",
                     maxWidth: 360,
-                    backgroundColor: "rgba(10,10,10,0.95)",
+                    backgroundColor: "rgba(70,70,70,0.85)",
                     backdropFilter: "blur(16px)",
                     WebkitBackdropFilter: "blur(16px)",
                 },
@@ -35,22 +35,11 @@ const MobileDrawer = ({ items, open, setOpen }: Props) => {
                 <Box
                     sx={{
                         display: "flex",
-                        justifyContent: "space-between",
+                        justifyContent: "flex-end",
                         alignItems: "center",
                         mb: 5,
                     }}
                 >
-                    <Typography
-                        sx={{
-                            fontWeight: 900,
-                            letterSpacing: "-0.05em",
-                            fontSize: "1.2rem",
-                            color: "#fff",
-                        }}
-                    >
-                        BRAND
-                    </Typography>
-
                     <IconButton
                         onClick={() => setOpen(false)}
                         sx={{ color: "#fff" }}

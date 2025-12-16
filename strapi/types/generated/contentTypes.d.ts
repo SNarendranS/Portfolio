@@ -430,31 +430,29 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
-  collectionName: 'headers';
+export interface ApiIntroIntro extends Struct.SingleTypeSchema {
+  collectionName: 'intros';
   info: {
-    displayName: 'Hero';
-    pluralName: 'headers';
-    singularName: 'header';
+    displayName: 'Intro';
+    pluralName: 'intros';
+    singularName: 'intro';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    biography: Schema.Attribute.Text & Schema.Attribute.DefaultTo<'biography'>;
+    biography: Schema.Attribute.Text & Schema.Attribute.DefaultTo<'bio'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::header.header'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String &
+    firstName: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'name'>;
-    picture: Schema.Attribute.Media<'images' | 'files'>;
+    lastName: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::intro.intro'> &
+      Schema.Attribute.Private;
+    picture: Schema.Attribute.Media<'files' | 'images'>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
@@ -505,6 +503,45 @@ export interface ApiNavItemNavItem extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'text'>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProjectProject extends Struct.CollectionTypeSchema {
+  collectionName: 'projects';
+  info: {
+    displayName: 'Project';
+    pluralName: 'projects';
+    singularName: 'project';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    demoScreenshots: Schema.Attribute.Media<'images' | 'files', true>;
+    demoVideo: Schema.Attribute.Media<'files' | 'videos'>;
+    gitURL: Schema.Attribute.String;
+    liveURL: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project.project'
+    > &
+      Schema.Attribute.Private;
+    projectDescription: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'description'>;
+    projectName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'name'>;
+    publishedAt: Schema.Attribute.DateTime;
+    techStack: Schema.Attribute.JSON & Schema.Attribute.Required;
+    thumbnail: Schema.Attribute.Media<'images' | 'files'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1021,8 +1058,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::header.header': ApiHeaderHeader;
+      'api::intro.intro': ApiIntroIntro;
       'api::nav-item.nav-item': ApiNavItemNavItem;
+      'api::project.project': ApiProjectProject;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

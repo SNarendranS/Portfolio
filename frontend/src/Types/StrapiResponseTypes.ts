@@ -1,13 +1,14 @@
 import type { StrapiImage } from "./StrapiTypes"
 
 export type HeaderResponse = {
-    name: string,
-    title: string,
-    biography: string
-    picture: StrapiImage
+    firstName: string;
+    lastName: string;
+    title: string;
+    biography: string;
+    picture: StrapiImage;
 }
 
-export type NavType='text'|'dropdown'|'button'|'link'
+export type NavType = 'text' | 'dropdown' | 'button' | 'link'
 export type NavItemsResponse = {
     id: number;
     documentId: string;

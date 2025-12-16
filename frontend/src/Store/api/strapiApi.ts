@@ -15,7 +15,7 @@ export const strapiApi = createApi({
       query: (id) => `projects/${id}?populate=*`,
     }),
     getHero: builder.query<StrapiSingle<HeaderResponse>, void>({
-      query: () => 'header?populate=*'
+      query: () => 'intro?populate=*'
     }),
         getNavItems: builder.query<StrapiCollection<NavItemsResponse>, void>({
       query: () => 'nav-items'

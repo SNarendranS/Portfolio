@@ -28,7 +28,7 @@ const Header = () => {
             <AppBar
                 elevation={0}
                 sx={{
-                    backgroundColor: "rgba(10,10,10,0.85)",
+                    backgroundColor: "rgba(70, 70, 70, 0.85)",
                     backdropFilter: "blur(12px)",
                     WebkitBackdropFilter: "blur(12px)",
                     borderBottom: "1px solid rgba(255,255,255,0.08)",
@@ -40,7 +40,7 @@ const Header = () => {
                         width: "100%",
                         mx: "auto",
                         display: "flex",
-                            justifyContent: { xs: "flex-end", md: "center" },
+                        justifyContent: { xs: "flex-end", md: "center" },
                         alignItems: "center",
                     }}
                 >
@@ -154,7 +154,7 @@ const Header = () => {
                 </Toolbar>
             </AppBar>
 
-           <MobileDrawer items={items!} open={open} setOpen={setOpen}/>
+            <MobileDrawer items={items!} open={open} setOpen={setOpen} />
         </>
     );
 };

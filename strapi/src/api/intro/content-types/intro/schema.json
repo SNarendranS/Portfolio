@@ -1,27 +1,30 @@
 {
   "kind": "singleType",
-  "collectionName": "headers",
+  "collectionName": "intros",
   "info": {
-    "singularName": "header",
-    "pluralName": "headers",
-    "displayName": "Hero"
+    "singularName": "intro",
+    "pluralName": "intros",
+    "displayName": "Intro"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "firstName": {
       "type": "string",
       "default": "name",
       "required": true
+    },
+    "lastName": {
+      "type": "string"
     },
     "picture": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
-        "images",
-        "files"
+        "files",
+        "images"
       ]
     },
     "title": {
@@ -31,7 +34,7 @@
     },
     "biography": {
       "type": "text",
-      "default": "biography"
+      "default": "bio"
     }
   }
 }
