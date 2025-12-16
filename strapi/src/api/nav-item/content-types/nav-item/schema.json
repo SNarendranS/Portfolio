@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nav_items",
+  "info": {
+    "singularName": "nav-item",
+    "pluralName": "nav-items",
+    "displayName": "Nav-Item"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "itemName": {
+      "type": "string",
+      "default": "item",
+      "required": true
+    },
+    "navType": {
+      "type": "enumeration",
+      "required": true,
+      "default": "text",
+      "enum": [
+        "link",
+        "button",
+        "dropdown",
+        "text"
+      ]
+    },
+    "displayOrder": {
+      "type": "integer",
+      "required": true,
+      "default": 0,
+      "unique": true,
+      "min": 0,
+      "max": 10
+    }
+  }
+}

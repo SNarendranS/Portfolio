@@ -430,6 +430,87 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
+  collectionName: 'headers';
+  info: {
+    displayName: 'Hero';
+    pluralName: 'headers';
+    singularName: 'header';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    biography: Schema.Attribute.Text & Schema.Attribute.DefaultTo<'biography'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::header.header'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'name'>;
+    picture: Schema.Attribute.Media<'images' | 'files'>;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'title'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNavItemNavItem extends Struct.CollectionTypeSchema {
+  collectionName: 'nav_items';
+  info: {
+    displayName: 'Nav-Item';
+    pluralName: 'nav-items';
+    singularName: 'nav-item';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    displayOrder: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 10;
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    itemName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'item'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::nav-item.nav-item'
+    > &
+      Schema.Attribute.Private;
+    navType: Schema.Attribute.Enumeration<
+      ['link', 'button', 'dropdown', 'text']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'text'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -940,6 +1021,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::header.header': ApiHeaderHeader;
+      'api::nav-item.nav-item': ApiNavItemNavItem;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
