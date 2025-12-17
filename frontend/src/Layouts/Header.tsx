@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useGetNavItemsQuery } from "../Store/api/strapiApi";
 import {
     AppBar,
     Box,
@@ -14,12 +13,25 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import type { NavItemsResponse } from "../Types/StrapiResponseTypes";
 import MobileDrawer from "../Components/Drawer";
-
-const Header = () => {
-    const { data: navItems } = useGetNavItemsQuery();
+import type { Prop, RefType } from "../Types/indexTypes";
+import type { StrapiResponse } from "../Types/StrapiTypes";
+type HeaderProp = {
+    navItems: Prop<StrapiResponse<NavItemsResponse[]>>;
+    ref: RefType
+}
+const Header = (prop: HeaderProp) => {
     const [open, setOpen] = useState(false);
+    const scrollTo = (name: string) => {
+        const key = (name.toLowerCase()+'Ref') as keyof RefType;
+        const ref = prop.ref[key];
+        ref?.current?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+    };
 
-    const items = navItems?.data
+
+    const items = prop.navItems?.data?.data
         ?.slice()
         .sort((a, b) => a.displayOrder - b.displayOrder);
 
@@ -90,6 +102,7 @@ const Header = () => {
                             if (item.navType === "button") {
                                 return (
                                     <Button
+                                        onClick={() => scrollTo(item.itemName)}
                                         key={item.id}
                                         sx={{
                                             borderRadius: 0,

@@ -1,11 +1,6 @@
-export type StrapiSingle<T, K = any> = {
+export type StrapiResponse<T> = {
     data: T;
-    meta: K;
-};
-
-export type StrapiCollection<T> = {
-    data: T[];
-    meta: {
+    meta?: {
         pagination: {
             page: number;
             pageSize: number;

@@ -1,6 +1,6 @@
 import type { StrapiImage } from "./StrapiTypes"
 
-export type HeaderResponse = {
+export type HeroResponse = {
     firstName: string;
     lastName: string;
     title: string;
@@ -15,4 +15,17 @@ export type NavItemsResponse = {
     itemName: string;
     navType: NavType;
     displayOrder: number;
+}
+
+export type ProjectsResponse = {
+    id: number;
+    documentId: string;
+    projectName: string,
+    gitURL: string,
+    liveURL: string,
+    projectDescription: string;
+    techStack: string[];
+    thumbnail: StrapiImage,
+    demoScreenshots: StrapiImage[],
+    demoVideo: StrapiImage
 }

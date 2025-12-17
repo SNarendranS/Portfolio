@@ -1,9 +1,17 @@
 import { Box, Container, Link, Typography } from "@mui/material";
-import { useGetHeroQuery } from "../Store/api/strapiApi";
+import type { HeroResponse, NavItemsResponse } from "../Types/StrapiResponseTypes";
+import type { StrapiResponse } from "../Types/StrapiTypes";
+import type { Prop } from "../Types/indexTypes";
 
-const Footer = () => {
-    const { data } = useGetHeroQuery();
+type FooterProp = {
+    NavItems: Prop<StrapiResponse<NavItemsResponse[]>>;
+    Hero: Prop<StrapiResponse<HeroResponse>>;
+};
 
+const Footer = (prop: FooterProp) => {
+    const navItems = prop?.NavItems?.data?.data
+        ?.slice()
+        .sort((a, b) => a.displayOrder - b.displayOrder);
     return (
         <Box
             component="footer"
@@ -40,7 +48,7 @@ const Footer = () => {
                                 color: "#F5F5F5",
                             }}
                         >
-                            {data?.data.firstName+' '+data?.data.lastName}
+                            {prop?.Hero?.data?.data?.firstName + ' ' + prop?.Hero?.data?.data?.lastName}
                         </Typography>
 
                         <Typography
@@ -50,7 +58,7 @@ const Footer = () => {
                                 textTransform: "uppercase",
                             }}
                         >
-                            Full-Stack Developer · UI Engineer · Problem Solver
+                            {prop?.Hero?.data?.data?.title}
                         </Typography>
 
                         <Typography
@@ -73,9 +81,9 @@ const Footer = () => {
                             flexWrap: "wrap",
                         }}
                     >
-                        {["About", "Projects", "Contact"].map((label) => (
+                        {navItems?.map((item) => (
                             <Link
-                                key={label}
+                                key={item.id}
                                 underline="none"
                                 sx={{
                                     fontSize: "0.7rem",
@@ -102,7 +110,7 @@ const Footer = () => {
                                     },
                                 }}
                             >
-                                {label}
+                                {item.itemName}
                             </Link>
                         ))}
                     </Box>
