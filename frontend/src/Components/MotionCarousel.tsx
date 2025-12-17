@@ -50,7 +50,7 @@ const MotionCarousel = ({ images }: Props) => {
                         width: "100%",
                         height: "100%",
                         objectFit: "contain",
-                        backgroundColor: "#0B0B0B",
+                        backgroundColor: "#3b3b3bff",
                         userSelect: "none",
                         cursor: "grab",
                         filter: "grayscale(100%)",
