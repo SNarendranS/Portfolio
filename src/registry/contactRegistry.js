@@ -11,11 +11,11 @@ export const CONTACT_LINKS = [
     value: 'narendran061102@gmail.com',
     href: 'mailto:narendran061102@gmail.com',
   },
-  {
-    label: 'PHONE',
-    value: '+91 6379954042',
-    href: 'tel:+916379954042',
-  },
+  // {
+  //   label: 'PHONE',
+  //   value: '+91 6379954042',
+  //   href: 'tel:+916379954042',
+  // },
   {
     label: 'LINKEDIN',
     value: 'narendran-saravanan',
